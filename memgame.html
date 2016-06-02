@@ -202,6 +202,7 @@ function countdown()
   timerid=setInterval(function(){distime.textContent=parseInt(timer);
                                  if(timer<=0)
                                   {document.getElementById("message").innerHTML="TIME IS UP...GAME OVER";
+
                                    
 
                                   document.getElementById("score").innerHTML="GAME OVER AND YOUR FINAL SCORE IS:"+match;
@@ -218,7 +219,7 @@ function displayscore()
   score=match+((timer+1)*0.25);
     document.getElementsByTagName("div").onclick=function(){};
     document.getElementById("moves").innerHTML="NUMBER OF MOVES MADE IS:"+moves;
-                                   
+                          
     window.alert("GAME OVER IN TIME,AWESOME");
   document.getElementById("score").innerHTML="GAME OVER AND YOUR FINAL SCORE IS:"+score;
  
