@@ -2,6 +2,9 @@
 <head>
 <title>memorygame</title>
 <style>
+body{background-image:url("gameback.jpg");
+     background-size: cover;
+     font-family: Comic Sans MS;}
 div{background-color:#FFCC00;
 height:3em;
 width:4em;
@@ -56,7 +59,7 @@ margin-left:20em;}
 #box16{margin-top:-4em;
       margin-left:33.5em;} 
 
-#message{color:red;
+#message{color:#663300;
          font-weight: bold;
          font-size: 24px;
          
@@ -64,9 +67,9 @@ margin-left:20em;}
 #distime{border:2px solid black;
           padding:10px;} 
 #score{font-size:24px;
-color:red;} 
-#time{font-size:24px;color:red;} 
-#moves{font-size:24px;color:red;}                      
+color:#663300;} 
+#time{font-size:24px;color:#663300;} 
+#moves{font-size:24px;color:#663300;}                      
             
 </style>
 </head>
@@ -101,10 +104,10 @@ color:red;}
 	<div onclick="check(this)"id="box15"></div>
 	<div onclick="check(this)"id="box16"></div>
 	<button id="click"onclick="randomgenerator()"autocomplete="off" style="margin-left:10em;">Click To Start</button>
-  <p  id="time"style=" margin-left:20em;">Seconds left:    <span id="distime">40</span></p>
-  <p id="message"style=" margin-left:20em;"></p>
-  <p id="score"    style=" margin-left:20em;"></p>
-  <p id="moves"   style=" margin-left:20em;"></p>
+  <p  id="time"style=" margin-left:40em;margin-top:-15em;">Seconds left:    <span id="distime">40</span></p>
+  <p id="message"style=" margin-left:40em;"></p>
+  <p id="score"    style=" margin-left:40em;"></p>
+  <p id="moves"   style=" margin-left:40em;"></p>
 
 <script>
 var a=[];//array the elements of which stores each div
@@ -204,11 +207,11 @@ function countdown()
                                   {document.getElementById("message").innerHTML="TIME IS UP...GAME OVER";
 
                                    
-
+                                    
                                   document.getElementById("score").innerHTML="GAME OVER AND YOUR FINAL SCORE IS:"+match;
                                    document.getElementById("moves").innerHTML="NUMBER OF MOVES MADE IS:"+moves;
                                    
-                                   document.getElementsByTagName("div").onclick=function(){};
+                                  // document.getElementsByTagName("div").onclick=function(){};
                                    
                                  }else --timer;
                                  },1000);
@@ -217,9 +220,9 @@ function countdown()
 function displayscore()
 { clearInterval(timerid);
   score=match+((timer+1)*0.25);
-    document.getElementsByTagName("div").onclick=function(){};
+    //document.getElementsByTagName("div").onclick=function(){};
     document.getElementById("moves").innerHTML="NUMBER OF MOVES MADE IS:"+moves;
-                          
+                        
     window.alert("GAME OVER IN TIME,AWESOME");
   document.getElementById("score").innerHTML="GAME OVER AND YOUR FINAL SCORE IS:"+score;
  
