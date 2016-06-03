@@ -4,8 +4,8 @@
 	     font-size:30px;
 	     font-weight:bold;
 	     font-family: Comic Sans MS;
-	     height:100px;
-	     width:110%;
+	     height:80px;
+	     width:150%;
 	     text-align:center;
 	     padding:20px;
 	     position:fixed;
@@ -107,13 +107,16 @@ border-radius:10px;
 
 
 #ortwo{
-background-color: white;
+background-image:url("bkcontent.jpg");
+background-repeat:repeat-y;
+background-size:cover;
 z-index: 5;
 width: 100%;
 color:black;
-height:20em;
+height:25em;
 padding:30px;
-font-size:20px;} 
+font-size:20px;
+font-family:Comic Sans MS;} 
 
 
 #festone{background-image: url("festember2.jpg");
@@ -122,18 +125,20 @@ font-size:20px;}
    background-repeat: no-repeat;
     width: 100%;
     height:40em;
-    margin-top:8em;
+    margin-top:1em;
 }  
 
 
-#festtwo{
-background-color: white;
+#festtwo{background-image: url("bkcontent2.jpg");
+background-size:cover;
+
 z-index: 5;
 width: 100%;
 color:black;
 height:20em;
 padding:30px;
-font-size:20px;}
+font-size:20px;
+font-family:Comic Sans MS;}
 
 
 #spiderone{background-image: url("spider.jpg");
@@ -142,18 +147,21 @@ font-size:20px;}
    background-repeat: no-repeat;
     width: 100%;
     height:40em;
-    margin-top:8em;
+    margin-top:1em;
 }  
 
 
-#spidertwo{
-background-color: white;
+#spidertwo{background-image: url("bkcontent3.jpg");
+background-size:cover;
+
+
 z-index: 5;
 width: 100%;
 color:black;
-height:20em;
+height:25em;
 padding:30px;
-font-size:20px;}
+font-size:20px;
+font-family:Comic Sans MS;}
 
 
 #aavegone{background-image: url("aavegpic.jpg") ;
@@ -162,18 +170,22 @@ font-size:20px;}
    background-repeat: no-repeat;
     width: 100%;
     height:40em;
-    margin-top:8em;
+    margin-top:1em;
 }  
 
 
-#aavegtwo{
-background-color: white;
+#aavegtwo{background-image: url("bkcontent4.jpg");
+background-size:cover;
+
+
 z-index: 5;
 width: 100%;
 color:black;
-height:20em;
+height:25em;
 padding:30px;
-font-size:20px;}
+font-size:20px;
+font-family:Comic Sans MS;
+}
 
 
 #pragone{background-image: url("pragyan.jpg") ;
@@ -182,18 +194,21 @@ font-size:20px;}
    background-repeat: no-repeat;
     width: 100%;
     height:40em;
-    margin-top:8em;
+    margin-top:1em;
 }  
 
 
-#pragtwo{
-background-color: white;
+#pragtwo{background-image: url("bkcontent5.png");
+background-size:cover;
+
+
 z-index: 5;
 width: 100%;
 color:black;
 height:20em;
 padding:30px;
-font-size:20px;}
+font-size:20px;
+font-family:Comic Sans MS;}
 
 #nittfestone{background-image: url("nittfest.png") ;
     background-attachment: fixed;
@@ -201,18 +216,21 @@ font-size:20px;}
    background-repeat: no-repeat;
     width: 100%;
     height:40em;
-    margin-top:4em;
+    margin-top:1em;
 }  
 
 
-#nittfesttwo{
-background-color: white;
+#nittfesttwo{background-image: url("bkcontent6.jpg");
+background-size:cover;
+
+
 z-index: 5;
 width: 100%;
 color:black;
 height:20em;
 padding:30px;
-font-size:20px;}
+font-size:20px;
+font-family:Comic Sans MS;}
 
 #festivalone{background-image: url("festivals.jpg") ;
     background-attachment: fixed;
@@ -220,18 +238,21 @@ font-size:20px;}
    background-repeat: no-repeat;
     width: 100%;
     height:50em;
-    margin-top:4em;
+    margin-top:1em;
 }  
 
 
 #festivaltwo{
-background-color: white;
+background-image: url("bkcontent7.jpg");
+background-size:cover;
+
 z-index: 5;
 width: 100%;
 color:black;
-height:25em;
+height:30em;
 padding:30px;
-font-size:20px;}
+font-size:20px;
+font-family:Comic Sans MS;}
 
 #hostelone{background-image: url("hostel.jpg") ;
     background-attachment: fixed;
@@ -239,29 +260,51 @@ font-size:20px;}
    background-repeat: no-repeat;
     width: 100%;
     height:35em;
-    margin-top:4em;
+    margin-top:1em;
 }  
 
 
 #hosteltwo{
-background-color: white;
+background-image: url("bkcontent8.jpg");
+
+
 z-index: 5;
 width: 100%;
 color:black;
 height:20em;
 padding:30px;
-font-size:20px;}
+font-size:20px;font-family:Comic Sans MS;
+}
+#first{background-image:url("bk2.jpg");
+       background-size:cover;
+       
+       }
 
 
 
 
 
 
-a:link#link {color:white;
+a:link.links {color:white;
         text-decoration:none;
        } 
 
-a:visited#link {color:white;
+a:visited.links {color:white;
+           text-decoration:none;} 
+
+
+a:hover.links {background-color: transparent;
+        color:black;
+        text-decoration:none;} 
+a:active.links {color:black;
+         text-decoration: none;
+          background-color:transparent;}        
+
+a:link#link {color:black;
+        text-decoration:none;
+            } 
+
+a:visited#link {color:black;
            text-decoration:none;} 
 
 
@@ -269,21 +312,6 @@ a:hover#link {background-color: transparent;
         color:black;
         text-decoration:none;} 
 a:active#link {color:black;
-         text-decoration: none;
-          background-color:transparent;}        
-
-a:link#link1 {color:black;
-        text-decoration:none;
-            } 
-
-a:visited#link1 {color:black;
-           text-decoration:none;} 
-
-
-a:hover#link1 {background-color: transparent;
-        color:black;
-        text-decoration:none;} 
-a:active#link1 {color:black;
          text-decoration: none;
           background-color:transparent;}        
 
