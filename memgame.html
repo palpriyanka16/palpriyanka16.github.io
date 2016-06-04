@@ -129,6 +129,25 @@ a[14]=document.getElementById("box15");
 a[15]=document.getElementById("box16");
 //window.onload=function(){document.getElementById("click").disabled="false";};
 var timerid;
+function stop(){document.getElementById("box1").onclick=function(){};
+                document.getElementById("box2").onclick=function(){};
+                document.getElementById("box3").onclick=function(){};
+                document.getElementById("box4").onclick=function(){};
+                document.getElementById("box5").onclick=function(){};
+                document.getElementById("box6").onclick=function(){};
+                document.getElementById("box7").onclick=function(){};                 
+                document.getElementById("box9").onclick=function(){};
+                document.getElementById("box10").onclick=function(){};
+                document.getElementById("box11").onclick=function(){};
+                document.getElementById("box12").onclick=function(){};
+                document.getElementById("box13").onclick=function(){};
+                document.getElementById("box14").onclick=function(){};
+                document.getElementById("box15").onclick=function(){};
+                document.getElementById("box16").onclick=function(){};
+                document.getElementById("box8").onclick=function(){};
+}
+ 
+               
 function randomgenerator()//function to randomly generate numbers for the tiles
 {  clearInterval(timerid);
     document.getElementById("click").disabled="true";
@@ -206,7 +225,7 @@ function countdown()
                                  if(timer<=0)
                                   {document.getElementById("message").innerHTML="TIME IS UP...GAME OVER";
 
-                                   
+                                   stop();
                                     
                                   document.getElementById("score").innerHTML="GAME OVER AND YOUR FINAL SCORE IS:"+match;
                                    document.getElementById("moves").innerHTML="NUMBER OF MOVES MADE IS:"+moves;
@@ -218,7 +237,9 @@ function countdown()
 }
 
 function displayscore()
+
 { clearInterval(timerid);
+  stop();
   score=match+((timer+1)*0.25);
     //document.getElementsByTagName("div").onclick=function(){};
     document.getElementById("moves").innerHTML="NUMBER OF MOVES MADE IS:"+moves;
