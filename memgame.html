@@ -147,7 +147,7 @@ function stop(){document.getElementById("box1").onclick=function(){};
                 document.getElementById("box8").onclick=function(){};
 }
  
-               
+  var flag;             
 function randomgenerator()//function to randomly generate numbers for the tiles
 {  clearInterval(timerid);
     document.getElementById("click").disabled="true";
@@ -162,10 +162,13 @@ function randomgenerator()//function to randomly generate numbers for the tiles
 
 
 for(i=0;;i++)
-{z=Math.floor((Math.random()*16));
+{flag=1;
+z=Math.floor((Math.random()*16));
  x=Math.floor((Math.random()*16));
  y=Math.floor((Math.random()*16));
- if(x!=y)
+  for(j=0;j<16;j++)
+{if(a[j].innerHTML==z)flag=0;}
+ if(x!=y && flag==1)
  	{if(a[x].innerHTML=="" && a[y].innerHTML=="")
        {a[x].innerHTML=z;
        	a[y].innerHTML=z;
