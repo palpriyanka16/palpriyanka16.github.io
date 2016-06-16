@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pong game</title>
+<style>
+body{background-image: url("yellow-3.jpg");
+     background-size: cover;}
+#canvas{
+          position:absolute;
+          margin:auto;
+          top:12em;
+          bottom:0;
+          left:0;
+          right:0;
+
+        }
+ #score{font-weight:bold;
+        font-size:25px;
+        font-family: Comic Sans MS;
+        color:#663300;
+       } 
+ #score1{border:2px solid black;
+        padding:5px;}  
+ #score2{border:2px solid black;
+         padding:5px;} 
+
+ #start{border-radius:8px;
+        background-color: #FF9900;
+        color:black;
+        cursor:pointer;
+        height:70px;
+        width:100px;
+        padding:2px;
+        font-size: 20px;
+        font-family: Comic Sans MS} 
+ #rules{font-family:Comic Sans MS;}  
+ #rule{font-family:Comic Sans MS;}                     
+</style>
+</head>
+<body>
+  <p id="rules">GAME RULES:<br>
+    <ul id="rule"style="list-style-type:disc" >
+      <li>The left paddle is the player under your control while the right paddle is controlled by the computer</li>
+      <li>Use the up and down arrow keys of your keyboard to control the movement of the player</li>
+      <li>For each hit one point is given.The one who misses hitting the ball loses</li>
+      
+      <li>To play again click on the start button.Enjoy the pong game.All the best:)</li>
+     </ul>
+   </p>
+ <p id="score">SCORE OF PLAYER      :   <span id="score1">0</span></p>
+ <p id="score">SCORE OF COMPUTER: <span id="score2">0</span></p>
+
+  <button id="start" onclick="main()">START</button>
+  <!--<button id="restart" onclick="load()">REPLAY</button>-->
+  <canvas id="canvas" width="500" height="500" style="background-color:#FF0000;">
+<script>    
+var player,ball,ai,score1,score2;
+var music;
+var ding;
+var reqid;
+var WIDTH=500;var HEIGHT=500;var pi=Math.PI;
+var upperkey=38;var downkey=40;
+var keystate,canvas,ctx;
+player={ 
+         x:null,
+         y:null,
+         width:20,
+         height:100,
+         update:function(){
+                           if(keystate[upperkey]) this.y-=7;
+                           else if(keystate[downkey]) this.y+=7;
+                           //this.y=Math.max(Math.min(this.y,HEIGHT-this.height,0));
+                           if(this.y<0){this.y=1;}
+                           if((this.y+this.height)>HEIGHT){this.y=HEIGHT-this.height;}
+                         },
+         draw:function(){ ctx.fillStyle="black";
+                          ctx.fillRect(this.x,this.y,this.width,this.height);
+                         }
+
+       };
+ball={
+       x:null,
+       y:null,
+       side:20,
+       speed:6,
+       vel:null,
+       update:function(){this.x+=this.vel.x;
+                          this.y+=this.vel.y;
+
+
+                         if(this.y<0 || this.y+this.side>HEIGHT)
+                            {var offset=(this.vel.y<0)?0-this.y:HEIGHT-(this.y+this.side);
+                             this.y+=2*offset;
+                             this.vel.y*=-1;
+                            }
+
+
+                       
+                       if((this.x<=(player.x+player.width)&& (this.y+this.side)>=player.y && (this.y+this.side)<=(player.y+player.height))||(this.x<=(player.x+player.width)&& (this.y)>=player.y && (this.y)<=(player.y+player.height)))
+                        { score1++;document.getElementById("score1").innerHTML=score1;
+                          this.x=player.x+player.width;
+                                var n=((this.y+this.side)-player.y)/(player.height+this.side);
+                                var phi=pi*0.25*(2*n-1);
+                                var smash=Math.abs(phi)>0.2*pi?1.5:1;
+                                this.vel.x=smash*this.speed*Math.cos(phi);
+                                this.vel.y=this.speed*smash*Math.sin(phi);
+                        }
+                        if((this.x>=ai.x&& (this.y+this.side)>=ai.y && (this.y+this.side)<=(ai.y+ai.height))||(this.x>=ai.x && (this.y+this.side)>=ai.y && (this.y+this.side)<=(ai.y+ai.height)))
+                        { score2++;document.getElementById("score2").innerHTML=score2;
+                          this.x=ai.x-this.side;
+                                var n=((this.y+this.side)-ai.y)/(ai.height+this.side);
+                                var phi=pi*0.25*(2*n-1);
+                                var smash=Math.abs(phi)>0.2*pi?1.5:1;
+                                this.vel.x=-1*smash*this.speed*Math.cos(phi);
+                                this.vel.y=this.speed*smash*Math.sin(phi);
+                        }
+                         
+                        if((this.x+this.side)>WIDTH)
+                        {ball.x=(WIDTH-ball.side)/2;
+                         ball.y=(HEIGHT-ball.side)/2;
+                         ball.vel={x:0,
+                                   y:0  };
+                         music.stop();ding.play();
+                         //ding.stop();      
+                         //window.alert("GAME OVER Your score is:"+score1+"COMPUTER's SCORE is:"+score2);  
+                         window.alert("GAME OVER YOU WIN");        
+                       }
+                        if(this.x<0){ball.x=(WIDTH-ball.side)/2;
+                         ball.y=(HEIGHT-ball.side)/2;
+                         ball.vel={x:0,
+                                   y:0  };
+                         //document.getElementById("score").style.visibility="hidden"   ; 
+                         music.stop(); ding.play();
+                         //ding.stop();     
+                         window.alert("GAME OVER YOU LOSE,TRY AGAIN");}
+
+                        },
+       draw:function(){ ctx.fillStyle="black";
+                       ctx.fillRect(this.x,this.y,this.side,this.side);
+                     }
+     };
+ai={ 
+       x:null,
+       y:null,
+       width:20,
+       height:100,
+       update:function(){var desty=ball.y-(this.height-ball.side)/2;
+                         this.y+=(desty-this.y)*0.1;
+                        //this.y=Math.max(Math.min(this.y,HEIGHT-this.height,0));
+                          if(this.y<0){this.y=1;}
+                           if((this.y+this.height)>HEIGHT){this.y=HEIGHT-this.height;}
+
+
+
+                      },
+       draw:function(){ctx.fillStyle="black";
+                       ctx.fillRect(this.x,this.y,this.width,this.height);
+                      }
+   };
+function main(){canvas=document.getElementById("canvas");
+                window.cancelAnimationFrame(reqid);
+                //document.getElementById("score").style.visibility="visible";
+               // music.stop();
+
+                score1=0;
+                score2=0;
+                document.getElementById("score1").innerHTML=score1;
+                document.getElementById("score2").innerHTML=score2;
+                ctx=canvas.getContext("2d");
+                keystate=[];
+                document.addEventListener("keydown",function(e){keystate[e.keyCode]=true;});
+                document.addEventListener("keyup",function(e){delete keystate[e.keyCode];});
+                music=new sound("backgroundmusic.mp3");
+                ding=new sound("ding.mp3");
+                
+                
+                music.play();
+
+                //document.getElementById("start").disabled=true;
+                init();
+                loop=function()
+                {    ctx.clearRect(0,0,WIDTH,HEIGHT);
+                    update();
+                    draw();
+                    
+                    //document.getElementById("score").innerHTML=Math.floor(0.1*score);
+                   reqid= window.requestAnimationFrame(loop,canvas);
+                }
+               reqid= window.requestAnimationFrame(loop,canvas);
+              }
+function init(){
+                  player.x=player.width;
+                  ai.x=WIDTH-(player.width+ai.width);
+                  ball.x=(WIDTH-ball.side)/2;
+                  ball.y=(HEIGHT-ball.side)/2;
+                  player.y=(HEIGHT-player.height)/2;
+                  ai.y=(HEIGHT-ai.height)/2-5;
+                  ball.vel={x:ball.speed,
+                            y:0  };
+
+
+              }
+function update(){ ball.update();
+                   player.update();
+                   ai.update();}
+function draw(){ 
+               
+               
+               
+               ball.draw();
+               player.draw();
+               ai.draw();
+               var w=4;
+               var y=0;
+               var x= (WIDTH-w)/2;
+               var step=HEIGHT/20;
+               while(y<HEIGHT)
+                {  ctx.fillStyle="white";
+                  ctx.fillRect(x,y+step*0.25,w,step*0.5);
+                 y=y+step;
+               }
+               
+             }
+
+function sound(src)
+{this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }    
+}
+
+ function load()  {  document.getElementById("start").disabled=false;
+                    location.reload();}          
+//main();
+
+</script>
+</body>
+</html>
